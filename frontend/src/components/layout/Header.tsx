@@ -1,11 +1,11 @@
 import { Wifi, WifiOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useWebSocket } from "@/hooks/useWebSocket";
 
-interface HeaderProps {
-    isConnected?: boolean;
-}
+export function Header() {
+    // 始终保持 WebSocket 连接以显示状态
+    const { isConnected } = useWebSocket('ws://localhost:8000/ws/stream', true);
 
-export function Header({ isConnected = false }: HeaderProps) {
     return (
         <header className="h-14 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex items-center justify-between px-4 sticky top-0 z-50">
             <div className="flex items-center gap-2 font-semibold">

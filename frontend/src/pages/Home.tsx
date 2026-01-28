@@ -3,12 +3,10 @@ import { AudioControls } from "@/components/audio/AudioControls";
 import { TranscriptionList } from "@/components/transcription/TranscriptionList";
 import { AnalysisCard } from "@/components/analysis/AnalysisCard";
 import { useWebSocket } from "@/hooks/useWebSocket";
-import { useAudioStore } from "@/store/useAudioStore";
 
 export function Home() {
-    const { isRecording } = useAudioStore();
-    // Connect WS when recording (mock URL for now)
-    useWebSocket('ws://localhost:8000/ws/stream', isRecording);
+    // 始终连接 WebSocket（不依赖录音状态）
+    useWebSocket('ws://localhost:8000/ws/stream', true);
 
     return (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 h-full">
