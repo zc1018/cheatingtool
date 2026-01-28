@@ -10,7 +10,8 @@ import sys
 
 from .config import settings, app_config
 from .api.routes import audio, config, llm, prompts
-from .api.websocket import handlers, manager
+from .api.websocket import handlers
+from .api.websocket.manager import manager
 from .services.audio_service import AudioService
 from .services.transcription_service import TranscriptionService
 from .services.analysis_service import AnalysisService
