@@ -8,3 +8,16 @@
 .worktrees/
 .security-key
 logs/security/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node
+dist/
+dist-electron/
+release/
+
+# Environment
+.env

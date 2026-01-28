@@ -13,7 +13,7 @@ export function Sidebar() {
     ];
 
     return (
-        <aside className="w-64 border-r bg-muted/40 h-screen flex-col hidden md:flex">
+        <aside className="w-64 border-r bg-muted/40 h-screen flex-col flex">
             <div className="p-4 border-b flex items-center gap-2 h-14">
                 <Mic className="h-6 w-6 text-primary" />
                 <span className="font-bold">Cheating Tool</span>

@@ -2,11 +2,12 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 interface LLMConfig {
-    provider: 'openai' | 'anthropic' | 'ollama';
+    provider: 'openai' | 'anthropic' | 'ollama' | 'kimi' | 'glm' | 'custom';
     apiKey?: string;
     model: string;
     temperature: number;
     baseUrl?: string;
+    maxTokens?: number;
 }
 
 interface STTConfig {
@@ -26,8 +27,9 @@ export const useConfigStore = create<ConfigState>()(
         (set) => ({
             llm: {
                 provider: 'openai',
-                model: 'gpt-3.5-turbo',
+                model: 'gpt-4o',
                 temperature: 0.7,
+                maxTokens: 2000,
             },
             stt: {
                 provider: 'browser',
