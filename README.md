@@ -22,10 +22,12 @@
 - **数据存储**: JSON / SQLite
 
 ### 前端
-- **框架**: Electron + React 18
-- **UI 库**: shadcn/ui + TailwindCSS
+- **框架**: Electron 40 + React 19 + TypeScript
+- **构建工具**: Vite
+- **UI 库**: shadcn/ui + TailwindCSS 4
 - **状态管理**: Zustand
-- **音频可视化**: Wavesurfer.js
+- **音频可视化**: Wavesurfer.js 7
+- **图标**: Lucide React
 
 ## 项目结构
 
@@ -42,8 +44,26 @@ cheatingtool/
 │   ├── data/                # 数据目录
 │   ├── requirements.txt     # Python 依赖
 │   └── API.md              # API 文档
-├── frontend/                # 前端代码
-│   └── 开发计划.md          # 前端开发计划
+├── frontend/                # 前端代码（Electron + React）
+│   ├── src/
+│   │   ├── components/      # React 组件
+│   │   │   ├── layout/      # 布局组件
+│   │   │   ├── audio/       # 音频组件
+│   │   │   ├── transcription/ # 转写组件
+│   │   │   ├── analysis/    # 分析组件
+│   │   │   ├── config/      # 配置组件
+│   │   │   ├── prompts/     # Prompt 管理
+│   │   │   └── ui/          # shadcn/ui 组件
+│   │   ├── pages/           # 页面
+│   │   ├── hooks/           # 自定义 Hooks
+│   │   ├── store/           # Zustand 状态管理
+│   │   ├── services/        # API 客户端
+│   │   └── styles/          # 样式文件
+│   ├── electron/            # Electron 主进程
+│   ├── public/              # 静态资源
+│   ├── package.json         # 前端依赖
+│   └── README.md            # 前端说明
+├── CLAUDE.md                # 开发规范
 └── README.md               # 本文件
 ```
 
@@ -69,6 +89,12 @@ cheatingtool/
 - 维护完整的对话历史
 - 识别说话人（用户/对方）
 - 对话统计和分析
+
+### 5. 桌面应用
+- Electron 跨平台应用
+- 原生 macOS 集成
+- 实时 WebSocket 通信
+- 响应式 UI 设计
 
 ## 快速开始
 
@@ -103,7 +129,21 @@ uvicorn app.main:app --reload
 
 ### 前端设置
 
-前端开发正在进行中，详细计划请查看 `frontend/开发计划.md`。
+```bash
+# 1. 进入前端目录
+cd frontend
+
+# 2. 安装依赖
+npm install
+
+# 3. 开发模式启动
+npm run dev
+
+# 4. 打包桌面应用
+npm run dist
+```
+
+前端开发服务器将在 `http://localhost:5173` 启动，Electron 窗口会自动打开。
 
 ## 配置说明
 
@@ -192,24 +232,53 @@ ws.onmessage = (event) => {
 
 详细 API 文档请查看 [`backend/API.md`](backend/API.md)。
 
-## 开发说明
+## 完整启动流程
 
-### 后端开发（Claude Code）
+### 开发模式（推荐用于测试）
 
-后端开发由 Claude Code 负责，直接在 `backend/` 目录中开发：
-
+**终端 1 - 启动后端**:
 ```bash
 cd backend
-# 编辑代码
-# 运行测试
-# 提交代码
+source venv/bin/activate
+uvicorn app.main:app --reload
 ```
 
-### 前端开发（Gemini 3）
+**终端 2 - 启动前端**:
+```bash
+cd frontend
+npm run dev
+```
 
-前端开发由 Gemini 3 负责，在 Antigravity 环境中根据 `frontend/开发计划.md` 进行开发。
+Electron 窗口会自动打开，连接到后端服务。
 
-详细分工请查看项目的 CLAUDE.md 文件。
+### 生产打包
+
+```bash
+# 1. 构建前端并打包 Electron 应用
+cd frontend
+npm run dist
+
+# 2. 安装包位置
+# macOS: release/AI-Voice-Assistant-1.0.0.dmg
+# Windows: release/AI-Voice-Assistant Setup 1.0.0.exe
+# Linux: release/AI-Voice-Assistant-1.0.0.AppImage
+```
+
+## 开发说明
+
+本项目采用前后端分离的开发模式：
+
+### 后端（Claude Code）
+- **工作目录**: `backend/`
+- **职责**: API 开发、音频处理、STT/LLM 集成
+- **框架**: FastAPI + Python
+
+### 前端（Gemini 3）
+- **工作目录**: `frontend/`
+- **职责**: Electron 桌面应用、UI 开发、WebSocket 集成
+- **框架**: Electron + React + TypeScript
+
+详细分工请查看 [`CLAUDE.md`](CLAUDE.md) 文件。
 
 ## 常见问题
 
@@ -255,3 +324,5 @@ cd backend
 
 **最后更新**: 2026-01-28
 **版本**: 1.0.0
+**项目状态**: ✅ 后端和前端已完成开发
+**代码统计**: 77 个文件，约 18,740 行代码
