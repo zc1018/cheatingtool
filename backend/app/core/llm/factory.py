@@ -155,7 +155,7 @@ class LLMFactory:
             "openai": "gpt-4o",
             "anthropic": "claude-3-5-sonnet-20241022",
             "ollama": "llama2",
-            "kimi": "moonshot-v1-8k",
+            "kimi": "kimi-k2.5",
             "glm": "glm-4",
             "custom": "custom-model",
         }
@@ -196,6 +196,7 @@ class LLMFactory:
                 "moonshot-v1-8k",
                 "moonshot-v1-32k",
                 "moonshot-v1-128k",
+                "kimi-k2.5",
             ],
             "glm": [
                 "glm-4",

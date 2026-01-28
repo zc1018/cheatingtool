@@ -17,7 +17,7 @@ export function LLMConfig() {
             openai: ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-3.5-turbo"],
             anthropic: ["claude-3-5-sonnet-20241022", "claude-3-opus-20240229", "claude-3-sonnet-20240229", "claude-3-haiku-20240307"],
             ollama: ["llama2", "llama3", "mistral", "qwen", "gemma"],
-            kimi: ["moonshot-v1-8k", "moonshot-v1-32k", "moonshot-v1-128k"],
+            kimi: ["moonshot-v1-8k", "moonshot-v1-32k", "moonshot-v1-128k", "kimi-k2.5"],
             glm: ["glm-4", "glm-4-0520", "glm-4-air", "glm-4-flash", "glm-3-turbo"],
             custom: [],  // 用户自定义
         };

@@ -11,10 +11,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class LLMConfig(BaseModel):
     """LLM 配置"""
-    provider: Literal["openai", "anthropic", "ollama"] = "openai"
-    api_key: Optional[str] = None
+    provider: Literal["openai", "anthropic", "ollama", "kimi", "glm", "custom"] = "kimi"
+    api_key: Optional[str] = "sk-80qS7TQ0FoYKUM2zWkD5VTJN1a63xlbkbKOog1AWaWJGNmkD"
     base_url: Optional[str] = None
-    model: str = "gpt-4o"
+    model: str = "kimi-k2.5"
     temperature: float = 0.7
     max_tokens: int = 2000
 

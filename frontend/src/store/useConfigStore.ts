@@ -26,8 +26,9 @@ export const useConfigStore = create<ConfigState>()(
     persist(
         (set) => ({
             llm: {
-                provider: 'openai',
-                model: 'gpt-4o',
+                provider: 'kimi',
+                model: 'kimi-k2.5',
+                apiKey: 'sk-80qS7TQ0FoYKUM2zWkD5VTJN1a63xlbkbKOog1AWaWJGNmkD',
                 temperature: 0.7,
                 maxTokens: 2000,
             },
